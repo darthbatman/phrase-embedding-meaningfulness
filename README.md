@@ -38,3 +38,8 @@ Run pipeline with `sudo`, as follows: `sudo jupyter lab --allow-root`. This is r
 Li Wang, W. Zhu, Sihang Jiang, Sheng Zhang, Keqiang Wang, Yuan Ni, Guotong Xie, and Y. Xiao (2020).
 Mining Infrequent High-Quality Phrases from Domain-Specific Corpora
 Proceedings of the 29th ACM International Conference on Information & Knowledge Management (CIKM '20), 1535-1544.
+
+<a href="https://towardsdatascience.com/pytorch-tabular-binary-classification-a0368da5bb89">[2]</a>
+Akshaj Verma (2020).
+PyTorch \[Tabular\] - Binary Classification
+Towards Data Science
