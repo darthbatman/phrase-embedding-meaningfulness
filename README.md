@@ -30,7 +30,67 @@ Install the dependencies using the following command.
 
 To train and test the classifier, run the cells of the `classifier.ipynb` Jupyter notebook, using `jupyter lab`, ensuring the `pem` kernel is selected.
 
-Run pipeline with `sudo`, as follows: `sudo jupyter lab --allow-root`. This is required to use `stanford-corenlp`, which is used in the pipeline.
+Run pipeline with `sudo`, as follows: `sudo jupyter lab --allow-root`. This is required to use `stanford-corenlp`, which is used in the pipeline and to save `Word2Vec` models.
+
+## Classification
+
+### Ablation Study
+
+| Window Size | Embedding Vector Size | Number of Epochs | Batch Normalization | Number of Layers | Minimum Frequency | Test Accuracy |
+| ----------- | --------------------- | ---------------- | ------------------- | ---------------- | ----------------- | ------------- |
+| 5           | 100                   | 50               | Yes                 | 2                | None              | 0.61          |
+| 5           | 100                   | 250              | Yes                 | 2                | None              | 0.64          |
+| 5           | 100                   | 100              | Yes                 | 2                | None              | 0.58          |
+| 5           | 100                   | 150              | Yes                 | 2                | None              | 0.65          |
+| 5           | 200                   | 150              | Yes                 | 2                | None              | 0.66          |
+| 5           | 300                   | 150              | Yes                 | 2                | None              | 0.62          |
+| 5           | 200                   | 150              | No                  | 2                | None              | 0.69          |
+| 5           | 200                   | 250              | No                  | 2                | None              | 0.66          |
+| 5           | 200                   | 200              | No                  | 2                | None              | 0.65          |
+| 5           | 200                   | 100              | No                  | 2                | None              | 0.71          |
+| 5           | 200                   | 80               | No                  | 2                | None              | 0.74          |
+| 5           | 200                   | 60               | No                  | 2                | None              | 0.72          |
+| 5           | 200                   | 70               | No                  | 2                | None              | 0.72          |
+| 5           | 200                   | 80               | No                  | 3                | None              | 0.75          |
+| 5           | 200                   | 200              | No                  | 5                | None              | 0.76          |
+| 5           | 200                   | 400              | No                  | 5                | None              | 0.73          |
+| 5           | 200                   | 80               | No                  | 3                | 5                 | 0.79          |
+| 5           | 200                   | 200              | No                  | 5                | 5                 | 0.80          |
+| 10          | 200                   | 200              | No                  | 5                | 5                 | 0.82          |
+| 10          | 200                   | 200              | No                  | 5                | 2                 | 0.76          |
+| 5           | 200                   | 200              | No                  | 5                | 5                 | 0.83          |
+
+## Results
+
+A random sampling of noun phrases deemed meaningful by the network are as follows:
+
+```
+document classification
+clustering tasks
+a new perspective
+the vanishing
+respect
+arrays
+resolutions
+noisier
+both modalities
+game
+```
+
+A random sampling of noun phrases deemed not meaningful by the network are as follows:
+
+```
+aims
+a challenging problem
+signals
+samples
+performance
+mislabeled
+accurate predictions
+advantages
+areas
+presence
+```
 
 ## References
 
