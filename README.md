@@ -60,7 +60,7 @@ Run pipeline with `sudo`, as follows: `sudo jupyter lab --allow-root`. This is r
 | 10          | 200                   | 200              | No                  | 5                | 2                 | 0.76          |
 | 5           | 200                   | 200              | No                  | 5                | 5                 | 0.83          |
 
-## Results
+### Results
 
 A random sampling of noun phrases deemed meaningful by the network are as follows:
 
