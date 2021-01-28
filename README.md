@@ -33,7 +33,7 @@ The trained deep binary classifier is then given the candidate phrase embeddings
 
 ### Method Evaluation
 
-The `method_evaluation.ipynb` notebook is a novel contribution, and can be used to evaluate the performance of the new framework, AutoPhrase, [PRDR Phrase Detection](https://github.com/harrywsh/phrase-detection), and ECON pipelines.
+The `method_evaluation.ipynb` notebook is a novel contribution, and can be used to evaluate the performance of the new framework, AutoPhrase, PRDR Phrase Detection, and ECON pipelines.
 
 ## Usage
 
