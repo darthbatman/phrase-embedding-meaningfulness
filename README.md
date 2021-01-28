@@ -5,7 +5,35 @@
 
 ## Description
 
-`phrase-embedding-meaningfulness` explores the application of a deep neural network to classify phrase meaningfulness from phrase embeddings.
+`phrase-embedding-meaningfulness` explores the application of a deep neural network to classify phrase meaningfulness from phrase embeddings. A pipeline to extract and rank domain-specific keyphrases from a domain-specific corpus has been implemented in this repository, using the meaningfulness classifier. The selected domain is "Computer Science". The series of pipeline steps is listed below.
+
+This repository also includes a comparison between the new framework, AutoPhrase, ECON, and [PRDR Phrase Detection](https://github.com/harrywsh/phrase-detection) results on the same input corpus (10000 arXiv computer science paper abstracts).
+
+## Pipeline
+
+1. Candidate Generation
+
+Noun phrases are extracted from the input corpus using `nltk` and `stanfordcorenlp`. Extracted noun phrases with phrase length (number of words) `<= MAX_PHRASE_LEN` are kept as candidates. `MAX_PHRASE_LEN` is set to `6`.
+
+2. Corpus Processing
+
+The set of phrases consists of the set of known good "Computer Science" keyphrases (selected Computer Science phrases from Wikipedia + Oxford Computer Science vocabulary), a set of randomly selected negative samples, and the set of generated candidates. With these positive samples, negative samples, and generated candidates, we replace each instance of these phrases in the corpus by its underscored equivalent. A phrase's underscored equivalent is the phrase with all instances of `' '` replaced by `'_'` (e.g. `machine learning`'s underscored equivalent is `machine_learning`). We perform this replacement to treat each phrase in our set of phrases as a single token when calculating word embeddings.
+
+3. Embedding Construction
+
+We use `Word2Vec`, with `WINDOW_SIZE` and `VECTOR_SIZE` as tunable hyperparameters, to generate phrase embeddings for each of the phrases in our set of phrases.
+
+4. Classifier Training
+
+We train a deep binary classifier to classify a phrase's meaningfulness that takes a phrase embedding of size `VECTOR_SIZE` as input, and outputs a quality-score from `0` to `1` for the phrase. The phrase is deemed meaningful if its quality-score is `>= 0.5`. The positive samples and negative samples are used to train the classifier.
+
+6. Keyphrase Extraction and Ranking
+
+The trained deep binary classifier is then given the candidate phrase embeddings as input. The candidate phrase's are then classified and scored to produce a ranked list of extracted keyphrases.
+
+### Method Evaluation
+
+The `method_evaluation.ipynb` notebook is a novel contribution, and can be used to evaluate the performance of the new framework, AutoPhrase, [PRDR Phrase Detection](https://github.com/harrywsh/phrase-detection), and ECON pipelines.
 
 ## Usage
 
@@ -62,35 +90,15 @@ Run pipeline with `sudo`, as follows: `sudo jupyter lab --allow-root`. This is r
 
 ### Results
 
-A random sampling of noun phrases deemed meaningful by the network are as follows:
+The following is a loss vs. epoch plot for the classifier's training stage (using the last set of hyperparameters in the ablation study):
 
-```
-document classification
-clustering tasks
-a new perspective
-the vanishing
-respect
-arrays
-resolutions
-noisier
-both modalities
-game
-```
+<p float="left" align="center">
+  <img src="readme_assets/loss_vs_epoch_plot.png" width="375" height="250"/>
+</p>
 
-A random sampling of noun phrases deemed not meaningful by the network are as follows:
+## Authors
 
-```
-aims
-a challenging problem
-signals
-samples
-performance
-mislabeled
-accurate predictions
-advantages
-areas
-presence
-```
+- Rishi Masand
 
 ## References
 
