@@ -58,7 +58,7 @@ Install the dependencies using the following command.
 
 To train and test the classifier, run the cells of the `classifier.ipynb` Jupyter notebook, using `jupyter lab`, ensuring the `pem` kernel is selected.
 
-Run pipeline with `sudo`, as follows: `sudo jupyter lab --allow-root`. This is required to use `stanford-corenlp`, which is used in the pipeline and to save `Word2Vec` models.
+Run the pipeline with `sudo`, as follows: `sudo jupyter lab --allow-root`. This is required to save `Word2Vec` models and to use `stanford-corenlp`, both of which occur in the pipeline.
 
 ## Classification
 
